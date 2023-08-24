@@ -1,0 +1,241 @@
+﻿Создайте базу данных с названием "test_library".
+Создайте таблицы в базе данных:
+"authors" с полями: author_id (integer), first_name (text), last_name (text).
+"books" с полями: book_id (integer), title (text), author_id (integer), publication_year (integer).
+"publishers" с полями: publisher_id (integer), name (text), country (text).
+"editions" с полями: edition_id (integer), book_id (integer), publisher_id (integer), edition_year (integer), price (numeric).
+"customers" с полями: customer_id (integer), first_name (text), last_name (text), email (text).
+"orders" с полями: order_id (integer), customer_id (integer), edition_id (integer), order_date (date).
+Создайте соответствующие первичные ключи для каждой таблицы.
+Создайте внешние ключи для таблиц, связывая их друг с другом.
+Заполните таблицы данными, которые могут быть использованы для выполнения различных заданий, связанных с выборками данных, объединениями таблиц и другими операциями.
+
+
+
+
+create database test_library;
+use test_library;
+create table authors (id int(25) not null primary key, author_id (integer), first_name (text), last_name (text));
+create table books (id int(25) not null primary key, book_id (integer), title (text), author_id (integer), publication_year (integer));
+create table publishers (id int(25) not null primary key, publisher_id (integer), name (text), country (text));
+create table editions (id int(25) not null primary key, edition_id (integer), book_id (integer), publisher_id (integer), edition_year (integer), price (numeric));
+create table customers (id int(25) not null primary key, customer_id (integer), first_name (text), last_name (text), email (text));
+create table orders (id int(25) not null primary key, order_id (integer), customer_id (integer), edition_id (integer), order_date (date));
+
+
+create table authors (id int not null primary key, author_id integer, first_name text, last_name text);
+create table books (book_id integer not null primary key, title text, author_id integer, publication_year integer);
+create table publishers (publisher_id integer not null primary key, name text, country text);
+create table editions (edition_id integer not null primary key, book_id integer, publisher_id integer, edition_year integer, price numeric);
+create table customers (customer_id integer not null primary key, first_name text, last_name text, email text);
+create table orders (order_id integer not null primary key, customer_id integer, edition_id integer, order_date date);
+
+
+
+
+create table authors (id int(25) not null primary key,
+author_id integer,
+first_name text,
+last_name text);
+
+
+
+1. Выведите список всех авторов
+2. Выведите список всех книг и их авторов.
+3. Выведите список всех заказов с информацией о клиентах и изданиях.
+4. Выведите список книг, опубликованных после 2010 года.
+5. Выведите количество книг для каждого автора.
+6. Выведите список книг, опубликованных между 2005 и 2015 годами включительно.
+7. Выведите список всех книг с их годом публикации.
+8. Выведите список всех клиентов с их контактными данными (имя, фамилия, email).
+9. Выведите все издания книги с идентификатором 5 (book_id = 5).
+10. Выведите количество изданий для каждого издательства
+11. Выведите список книг, опубликованных до 2000 года
+12. Выведите список авторов, фамилия которых начинается на букву 'A'
+13. Выведите все заказы, сделанные клиентом с идентификатором 10 (customer_id = 10).
+14. Выведите список всех заказанных изданий, их названия и названия издательств.
+15. Выведите список книг, опубликованных в 21-м веке.
+
+
+
+
+create database test_library;
+use test_library;
+create table authors (author_id integer not null primary key, first_name text, last_name text);
+insert into authors values (1, "Alexandr", "Pushkin");
+insert into authors values (2, "Lev", "Tolstoy");
+insert into authors values (3, "Alexandr", "Dumas");
+insert into authors values (4, "Ivan", "Bunin");
+insert into authors values (5, "Boris", "Akunin");
+insert into authors values (6, "Maxim", "Gorkyi");
+insert into authors values (7, "Mixail", "Bulgakov");
+insert into authors values (8, "Alexandr", "Solzhenicin");
+insert into authors values (9, "Sergey", "Esenin");
+insert into authors values (10, "Alexandr", "Blok");
+select * from authors;
+create table books (book_id integer not null primary key, title text, author_id integer, publication_year integer);
+insert into books values (1, "Капитанская дочь", 1, 1836);
+insert into books values (2, "Война и мир", 2, 1867);
+insert into books values (3, "Три мушкетера", 3, 1844);
+insert into books values (4, "Антоновские яблоки", 4, 1900);
+insert into books values (5, "Левиафан", 5, 1998);
+insert into books values (6, "Мать", 6, 1906);
+insert into books values (7, "Мастер и Маргарита", 7, 1967);
+insert into books values (8, "Раковый корпус", 8, 1966);
+insert into books values (9, "Береза", 9, 1913);
+insert into books values (10, "Двенадцать", 10, 1918);
+create table publishers (publisher_id integer not null primary key, name text, country text);
+insert into publishers values (1, "Эксмо", "Россия");
+insert into publishers values (2, "Союз писателей", "Россия");
+insert into publishers values (3, "Речь", "Россия");
+insert into publishers values (4, "Лениздат", "Россия");
+insert into publishers values (5, "Питер", "Россия");
+insert into publishers values (6, "Вече", "Россия");
+insert into publishers values (7, "Просвещение", "Россия");
+insert into publishers values (8, "Лань", "Россия");
+insert into publishers values (9, "Генезис", "Россия");
+insert into publishers values (10, "Новый формат", "Россия");
+create table editions (edition_id integer not null primary key, book_id integer, publisher_id integer, edition_year integer, price numeric);
+insert into editions values (1, 1, 1, 2003, 900.67);
+insert into editions values (2, 2, 10, 1703, 1670);
+insert into editions values (3, 3, 9, 1980, 1234.3);
+insert into editions values (4, 4, 8, 1962, 500);
+insert into editions values (5, 5, 7, 1966, 2374);
+insert into editions values (6, 6, 6, 1979, 1298);
+insert into editions values (7, 7, 5, 1990, 1200);
+insert into editions values (8, 8, 4, 1987, 2000);
+insert into editions values (9, 9, 3, 1940, 3389);
+insert into editions values (10, 10, 2, 1970, 1983);
+create table customers (customer_id integer not null primary key, first_name text, last_name text, email text);
+insert into customers values (1, "Иван", "Петров","ivan@mail.ru");
+insert into customers values (2, "Петр", "Сидоров","sidorov@yandex.ru");
+insert into customers values (3, "Сергей", "Гожин","gozhin@mail.ru");
+insert into customers values (4, "Влад", "Дудкин","vlad18231@relex.ru");
+insert into customers values (5, "Света", "Соколова","sokolova@rambler.ru");
+insert into customers values (6, "Елена", "Седова","lenok1923@mail.ru");
+insert into customers values (7, "Любовь", "Воронова","lubavoron@yandex.ru");
+insert into customers values (9, "Игорь", "Гришин","grishin0000@relex.ru");
+insert into customers values (10, "Инга", "Мокшина","ingavan@mail.ru");
+create table orders (order_id integer not null primary key, customer_id integer, edition_id integer, order_date date);
+insert into orders values (1, 1, 10, "2023-03-27");
+insert into orders values (2, 2, 9, "2023-02-23");
+insert into orders values (3, 3, 8, "2022-12-29");
+insert into orders values (4, 4, 7, "2023-01-10");
+insert into orders values (5, 5, 6, "2023-03-01");
+insert into orders values (6, 6, 5, "2023-02-17");
+insert into orders values (7, 7, 4, "2022-10-01");
+insert into orders values (8, 8, 3, "2023-03-05");
+insert into orders values (9, 9, 2, "2023-01-20");
+insert into orders values (10, 10, 1, "2022-11-03");
+
+
+ALTER TABLE books ADD FOREIGN KEY (author_id) REFERENCES authors(author_id);
+ALTER TABLE editions ADD FOREIGN KEY (book_id) REFERENCES books(book_id);
+ALTER TABLE editions ADD FOREIGN KEY (publisher_id) REFERENCES publishers(publisher_id);
+ALTER TABLE orders ADD FOREIGN KEY (edition_id) REFERENCES editions(edition_id);
+ALTER TABLE orders ADD FOREIGN KEY (customer_id) REFERENCES customers(customer_id);
+
+
+
+
+ФИНАЛЬНЫЙ
+create database test_library;
+use test_library;
+create table authors (author_id integer not null primary key, first_name text, last_name text);
+insert into authors values (1, "Alexandr", "Pushkin");
+insert into authors values (2, "Lev", "Tolstoy");
+insert into authors values (3, "Alexandr", "Dumas");
+insert into authors values (4, "Ivan", "Bunin");
+insert into authors values (5, "Boris", "Akunin");
+insert into authors values (6, "Maxim", "Gorkyi");
+insert into authors values (7, "Mixail", "Bulgakov");
+insert into authors values (8, "Alexandr", "Solzhenicin");
+insert into authors values (9, "Sergey", "Esenin");
+insert into authors values (10, "Alexandr", "Blok");
+select * from authors;
+create table books (book_id integer not null primary key, title text, author_id integer, publication_year integer);
+insert into books values (1, "Капитанская дочь", 1, 1836);
+insert into books values (2, "Война и мир", 2, 1867);
+insert into books values (3, "Три мушкетера", 3, 1844);
+insert into books values (4, "Антоновские яблоки", 4, 1900);
+insert into books values (5, "Левиафан", 5, 1998);
+insert into books values (6, "Мать", 6, 1906);
+insert into books values (7, "Мастер и Маргарита", 7, 1967);
+insert into books values (8, "Раковый корпус", 8, 1966);
+insert into books values (9, "Береза", 9, 1913);
+insert into books values (10, "Двенадцать", 10, 1918);
+create table publishers (publisher_id integer not null primary key, name text, country text);
+insert into publishers values (1, "Эксмо", "Россия");
+insert into publishers values (2, "Союз писателей", "Россия");
+insert into publishers values (3, "Речь", "Россия");
+insert into publishers values (4, "Лениздат", "Россия");
+insert into publishers values (5, "Питер", "Россия");
+insert into publishers values (6, "Вече", "Россия");
+insert into publishers values (7, "Просвещение", "Россия");
+insert into publishers values (8, "Лань", "Россия");
+insert into publishers values (9, "Генезис", "Россия");
+insert into publishers values (10, "Новый формат", "Россия");
+create table editions (edition_id integer not null primary key, book_id integer, publisher_id integer, edition_year integer, price numeric);
+insert into editions values (1, 1, 1, 2003, 900.67);
+insert into editions values (2, 2, 10, 1703, 1670);
+insert into editions values (3, 3, 9, 1980, 1234.3);
+insert into editions values (4, 4, 8, 1962, 500);
+insert into editions values (5, 5, 7, 1966, 2374);
+insert into editions values (6, 6, 6, 1979, 1298);
+insert into editions values (7, 7, 5, 1990, 1200);
+insert into editions values (8, 8, 4, 1987, 2000);
+insert into editions values (9, 9, 3, 1940, 3389);
+insert into editions values (10, 10, 2, 1970, 1983);
+create table customers (customer_id integer not null primary key, first_name text, last_name text, email text);
+insert into customers values (1, "Иван", "Петров","ivan@mail.ru");
+insert into customers values (2, "Петр", "Сидоров","sidorov@yandex.ru");
+insert into customers values (3, "Сергей", "Гожин","gozhin@mail.ru");
+insert into customers values (4, "Влад", "Дудкин","vlad18231@relex.ru");
+insert into customers values (5, "Света", "Соколова","sokolova@rambler.ru");
+insert into customers values (6, "Елена", "Седова","lenok1923@mail.ru");
+insert into customers values (7, "Любовь", "Воронова","lubavoron@yandex.ru");
+insert into customers values (9, "Игорь", "Гришин","grishin0000@relex.ru");
+insert into customers values (10, "Инга", "Мокшина","ingavan@mail.ru");
+create table orders (order_id integer not null primary key, customer_id integer, edition_id integer, order_date date);
+insert into orders values (1, 1, 10, "2023-03-27");
+insert into orders values (2, 2, 9, "2023-02-23");
+insert into orders values (3, 3, 8, "2022-12-29");
+insert into orders values (4, 4, 7, "2023-01-10");
+insert into orders values (5, 5, 6, "2023-03-01");
+insert into orders values (6, 6, 5, "2023-02-17");
+insert into orders values (7, 7, 4, "2022-10-01");
+insert into orders values (8, 8, 3, "2023-03-05");
+insert into orders values (9, 9, 2, "2023-01-20");
+insert into orders values (10, 10, 1, "2022-11-03");
+
+ALTER TABLE books ADD FOREIGN KEY (author_id) REFERENCES authors(author_id);
+ALTER TABLE editions ADD FOREIGN KEY (book_id) REFERENCES books(book_id);
+ALTER TABLE editions ADD FOREIGN KEY (publisher_id) REFERENCES publishers(publisher_id);
+ALTER TABLE orders ADD FOREIGN KEY (edition_id) REFERENCES editions(edition_id);
+ALTER TABLE orders ADD FOREIGN KEY (customer_id) REFERENCES customers(customer_id);
+
+select * from authors; --1. Выведите список всех авторов
+
+
+select last_name,first_name, 
+title from books inner join authors on authors.author_id=books.author_id; --2. Выведите список всех книг и их авторов.
+
+select order_id,customer_id,publisher_id from orders inner join authors on authors.author_id=books.author_id; --3. 
+
+select * from books where publication_year>=2010; --4. Выведите список книг, опубликованных после 2010 года.
+
+select first_name count (author_id) from authors 
+left join books on authors.author_id=books.author_id group by first_name order by author_id asc; --5. Выведите количество книг для каждого автора.
+
+select * from books where publication_year>=2010 and publication_year<=2015; --6. Выведите список книг, опубликованных между 2005 и 2015 годами включительно.
+
+select  edition_year, title from books inner join editions on editions.book_id=books.book_id;  -- 7. Выведите список всех книг с их годом публикации.
+
+select * from customers;  --8. Выведите список всех клиентов с их контактными данными (имя, фамилия, email).
+
+select * from publishers where book_id = 5;  --
+select * from books where publication_year<=2000; --11. Выведите список книг, опубликованных до 2000 года
+
+select * from authors where last_name like "A%";   --12. Выведите список авторов, фамилия которых начинается на букву 'A'
+
+-
